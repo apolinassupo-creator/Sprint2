@@ -1,0 +1,52 @@
+package io.github.Polina.buttons;
+
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
+
+public class ButtonExit {
+    BitmapFont font;
+
+    String text;
+    Texture texture;
+
+    int x, y;
+    int textX, textY;
+    int buttonWidth, buttonHeight;
+    int textWidth, textHeight;
+    public ButtonExit(int x, int y, String text){
+        this.x=x;
+        this.y=y;
+        this.text=text;
+        font = new BitmapFont();
+        font.getData().scale(5f);
+        font.setColor(0.45f, 0.25f, 0.12f, 1f);
+
+        GlyphLayout gl = new GlyphLayout(font, text);
+        textWidth = (int) gl.width;
+        textHeight = (int) gl.height;
+
+        texture = new Texture("button/button_menu.png");
+        buttonWidth = 370;
+        buttonHeight = 170;
+
+
+        textX = x + (buttonWidth - textWidth) / 2;
+        textY = y + (buttonHeight + textHeight) / 2;
+
+    }
+    public boolean isExitHit(int tx, int ty) {
+        return tx >= x && tx <= x + buttonWidth
+            && ty >= y && ty <= y + buttonHeight;
+    }
+    public void draw(Batch batch) {
+        batch.draw(texture, x, y, buttonWidth, buttonHeight);
+        font.draw(batch, text, textX, textY);
+    }
+
+    public void dispose() {
+        texture.dispose();
+        font.dispose();
+    }
+}
