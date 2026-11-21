@@ -1,11 +1,11 @@
 package io.github.Polina;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Screen;
+import io.github.Polina.components.RecordWrite;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import io.github.Polina.components.RecordWrite;
+
 import io.github.Polina.screens.ScreenGame;
 import io.github.Polina.screens.ScreenMenu;
 import io.github.Polina.screens.ScreenRestart;
@@ -18,14 +18,16 @@ public class Main extends Game {
     public static final int SCR_HEIGHT = 720;
     public ScreenRestart screenRestart;
     public ScreenMenu screenMenu;
-
-
+    public RecordWrite recordWrite;
     public ScreenGame screenGame;
+
+
     @Override
     public void create() {
         batch = new SpriteBatch();
         camera = new OrthographicCamera();
         camera.setToOrtho(false, SCR_WIDTH, SCR_HEIGHT);
+        recordWrite = new RecordWrite();
         screenMenu = new ScreenMenu(this);
         screenGame = new ScreenGame(this);
         screenRestart = new ScreenRestart(this);

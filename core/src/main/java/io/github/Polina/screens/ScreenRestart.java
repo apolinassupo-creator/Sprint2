@@ -19,9 +19,9 @@ import io.github.Polina.components.RecordWrite;
 public class ScreenRestart implements Screen {
     Audio audio = Gdx.audio;
     Main myGdxGame;
+    RecordWrite recordWrite;
     TextButton buttonRestart;
     MoveFrame moveFrame;
-    RecordWrite recordWrite;
     PointCounter pointCounter;
     ButtonMenu buttonMenu;
     int countPoints;
@@ -29,7 +29,7 @@ public class ScreenRestart implements Screen {
 
     public ScreenRestart(Main myGdxGame) {
         this.myGdxGame = myGdxGame;
-        recordWrite = new RecordWrite();
+        recordWrite = myGdxGame.recordWrite;
         pointCounter = new PointCounter(23, 90);
         buttonRestart = new TextButton(900, 580, "Restart");
         moveFrame = new MoveFrame("Frame/restart_bg.png");

@@ -24,7 +24,6 @@ public class ScreenGame implements Screen {
     Main myGdxGame;
     Bird bird;
     PointCounter pointCounter;
-    ScreenMenu menu;
     final int pointCounterMarginTop = 60;
     final int pointCounterMarginRight = 400;
 
@@ -34,12 +33,11 @@ public class ScreenGame implements Screen {
     private boolean isGameOver;
     int countPoints;
     private Music music;
-
     public ScreenGame(Main myGdxGame) {
         this.myGdxGame = myGdxGame;
 
         initTubes();
-        recordWrite = new RecordWrite();
+        recordWrite = myGdxGame.recordWrite;
         moveFrame = new MoveFrame("Frame/game_bg.png");
         bird = new Bird(20, SCR_HEIGHT / 2, 10, 250, 200);
         pointCounter = new PointCounter(SCR_WIDTH - pointCounterMarginRight, SCR_HEIGHT - pointCounterMarginTop);
@@ -121,6 +119,7 @@ public class ScreenGame implements Screen {
 
     @Override
     public void hide() {
+
         music.stop();
     }
 

@@ -8,13 +8,13 @@ public class RecordWrite {
     private Preferences downlend;
     private int record;
 
-    // Загружаем сохранённый рекорд
+
     public RecordWrite() {
         downlend = Gdx.app.getPreferences("game_prefs");
         record = downlend.getInteger("high_score", 0);
     }
 
-    // Проверяем, появился ли новый рекорд
+
     public void checkRecord(int point) {
         if (point > record) {
             record = point;
@@ -30,7 +30,7 @@ public class RecordWrite {
         downlend.flush();
     }
 
-    // Возвращаем рекорд
+
     public int getRecord() {
         return record;
     }

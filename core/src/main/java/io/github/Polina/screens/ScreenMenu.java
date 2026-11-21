@@ -18,17 +18,16 @@ import io.github.Polina.components.RecordWrite;
 public class ScreenMenu implements Screen {
     Main myGdxGame;
     Audio audio = Gdx.audio;
-
+    RecordWrite recordWrite;
     MoveFrame menuFrame;
     PointCounter pointCounter;
     ButtonExit buttonExit;
     ButtonStart buttonStart;
-    RecordWrite recordWrite;
 
     public ScreenMenu(Main myGdxGame){
         this.myGdxGame=myGdxGame;
         pointCounter = new PointCounter(100,100);
-        recordWrite = new RecordWrite();
+        recordWrite = myGdxGame.recordWrite;
         menuFrame = new MoveFrame("Frame/menu_bg.png");
         buttonStart = new ButtonStart(350,350,"START");
         buttonExit = new ButtonExit(410,150,"Exit");
@@ -53,6 +52,7 @@ public class ScreenMenu implements Screen {
             );
 
             if (buttonStart.isStartHit((int) touch.x, (int) touch.y)) {
+                //recordWrite.resetRecord();
                 myGdxGame.setScreen(myGdxGame.screenGame);
             }
             if (buttonExit.isExitHit((int) touch.x, (int) touch.y)) {
@@ -63,10 +63,11 @@ public class ScreenMenu implements Screen {
         myGdxGame.batch.setProjectionMatrix(myGdxGame.camera.combined);
         myGdxGame.batch.begin();
 
+
         menuFrame.draw(myGdxGame.batch);
         buttonStart.draw(myGdxGame.batch);
         buttonExit.draw(myGdxGame.batch);
-        pointCounter.draw(myGdxGame.batch, recordWrite.getRecord());
+        pointCounter.draw(myGdxGame.batch,recordWrite.getRecord());
         myGdxGame.batch.end();
 
 
@@ -99,6 +100,6 @@ public class ScreenMenu implements Screen {
         buttonExit.dispose();
         buttonStart.dispose();
         menuFrame.dispose();
-        music.dispose();
+       music.dispose();
     }
 }
